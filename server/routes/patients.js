@@ -14,21 +14,14 @@ app.get("/patients", async (req, resp) => {
 });
 
 app.post("/patients", async (req, resp) => {
-  const { name, birthdate, email, physicianId } = req.body;
-
-  if (!name) {
+  if (!req.body.name) {
     resp
       .status(StatusCodes.BAD_REQUEST)
       .send({ message: "Patient must have a name." });
     return;
   }
 
-  const newPatient = new patientModel({
-    name,
-    birthdate,
-    email,
-    physicianId,
-  });
+  const newPatient = new patientModel(req.body);
 
   try {
     await newPatient.save();
