@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(require("path").join(__dirname, "public")));
 app.use(require("./routes/patients"));
+app.use(require("./routes/physicians"));
 
 require("mongoose").connect(
   `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@medisynccluster.rht3tp8.mongodb.net/medisyncDB?retryWrites=true&w=majority`

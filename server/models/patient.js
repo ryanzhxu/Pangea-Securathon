@@ -1,9 +1,36 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
-module.exports = mongoose.model("Patient", new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    name: String,
-    birthdate: Date,
-    email: String,
-    physicianId: mongoose.Schema.Types.ObjectId,
-}));
+module.exports = mongoose.model(
+  "Patient",
+  new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      birthdate: {
+        type: Date,
+        required: false,
+        default: null,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      notes: {
+        type: String,
+        required: false,
+        default: "",
+      },
+      physicianId: {
+        type: Schema.Types.ObjectId,
+        ref: "Physician",
+        required: true,
+      },
+    },
+    {
+      collection: "patients",
+    }
+  )
+);
