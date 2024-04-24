@@ -40,10 +40,10 @@ const GetStart = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => navigate(selectedValue === 'physician' ? '/register/physician' : '/register/patient')}
+              onClick={() => navigate(`/register/${selectedValue}`)}
               disabled={!selectedValue}
             >
-              Proceed
+              Continue
             </Button>
           </div>
         </div>
