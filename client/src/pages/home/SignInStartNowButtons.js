@@ -6,7 +6,9 @@ const SignInStartNowButtons = () => {
   return (
     <StSignInStartNowButtons>
       <Button variant="outlined">Sign In</Button>
-      <Button variant="contained">Start Now</Button>
+      <Button variant="contained" href="/getstart">
+        Start Now
+      </Button>
     </StSignInStartNowButtons>
   );
 };
