@@ -14,18 +14,15 @@ const GetStart = () => {
 
   return (
     <div className="get-start-page" style={{ display: 'flex' }}>
-      <img src={joinMediSync} alt="Join Medisync!" />
-      <div className="get-start-page-right-section">
-        <div
-          className="get-start-page-login"
-          style={{ margin: 'auto auto 197px auto', textAlign: 'center', paddingTop: '45px' }}
-        >
+      <img src={joinMediSync} alt="Join Medisync!" style={{ flex: 1 }} />
+      <div className="get-start-page-right-section" style={{ flex: 1 }}>
+        <div className="get-start-page-login" style={{ marginTop: '45px', textAlign: 'center' }}>
           Already have an account?{' '}
           <a href="/signin" style={{ textDecoration: 'none', color: '#1565D8', fontWeight: 'bold' }}>
             Sign in
           </a>
         </div>
-        <div style={{ textAlign: 'left' }}>
+        <div style={{ textAlign: 'left', margin: '100px 120px' }}>
           <h2>Get started now</h2>
           <h4 style={{ color: 'grey', fontWeight: 'normal' }}>
             To begin, tell us what type of account you're registering.
@@ -53,4 +50,3 @@ const GetStart = () => {
 };
 
 export default GetStart;
-

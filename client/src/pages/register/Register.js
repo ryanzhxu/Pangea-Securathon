@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button } from '@mui/material';
+// @ts-ignore
 import joinMediSync from '../startNow/images/join-medisync.svg';
 import SERVER_URL from '../../config';
 
@@ -46,9 +47,9 @@ const Register = ({ isPhysician }) => {
 
   return (
     <div className="get-start-page" style={{ display: 'flex' }}>
-      <img src={joinMediSync} alt="Join Medisync!" />
-      <div className="get-start-page-right-section" style={{ marginTop: '5%' }}>
-        <div style={{ textAlign: 'left' }}>
+      <img src={joinMediSync} alt="Join Medisync!" style={{ flex: 1 }} />
+      <div className="get-start-page-right-section" style={{ flex: 1 }}>
+        <div style={{ textAlign: 'left', margin: '100px 120px' }}>
           <h2 style={{ marginBottom: '25px' }}>Register as a physician</h2>
           <form onSubmit={handleSubmit}>
             <FormGroup style={{ gap: '25px' }}>
@@ -87,4 +88,3 @@ Register.propTypes = {
 };
 
 export default Register;
-
