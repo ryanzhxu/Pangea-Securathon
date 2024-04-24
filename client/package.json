@@ -3,22 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.15.15",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@material-ui/core": "^4.12.4",
+    "@material/button": "^14.0.0",
+    "@mui/material": "^5.14.2",
+    "@popperjs/core": "^2.11.8",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "lint": "^0.8.19",
+    "lottie-react": "^2.4.0",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-clock": "^4.5.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.3",
+    "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext \"./src/**/*.{js,jsx,ts,tsx,d.ts}\"",
+    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,d.ts,css,html}\" \"./public/**/*.{css,html}\""
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.32.2"
   }
 }
