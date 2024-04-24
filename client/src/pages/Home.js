@@ -19,7 +19,7 @@ const Home = () => {
     <StHome>
       <Header />
       <Body />
-      <div className="home-page-bottom-section">
+      <div className="home-page-bottom-section" style={{ marginRight: '120px' }}>
         <div>
           <h2>Medisync pairs with popular wearable health trackers</h2>
           <div style={{ display: 'inline-flex', gap: '60px', alignItems: 'center' }}>
@@ -29,7 +29,7 @@ const Home = () => {
             <a href="https://www.fitbit.com">
               <img src={fitbit} alt="fitbit" />
             </a>
-            <a href="https://www.apple.com">
+            <a href="https://www.apple.com/ca/watch">
               <img src={applewatch} alt="applewatch" />
             </a>
             <a href="https://www.dexcom.com">

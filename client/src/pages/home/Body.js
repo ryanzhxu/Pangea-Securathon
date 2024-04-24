@@ -16,7 +16,9 @@ const Body = () => {
           medical history.
         </h4>
         <div style={{ display: 'flex', gap: '24px' }}>
-          <Button variant="contained">Start Now</Button>
+          <Button variant="contained" href="/getstart">
+            Start Now
+          </Button>
           <Button variant="text">How it works</Button>
         </div>
       </div>

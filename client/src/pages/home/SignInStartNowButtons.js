@@ -5,7 +5,9 @@ import StSignInStartNowButtons from './signInStartNowButtons/StSignInStartNowBut
 const SignInStartNowButtons = () => {
   return (
     <StSignInStartNowButtons>
-      <Button variant="outlined">Sign In</Button>
+      <Button variant="outlined" href="/signin">
+        Sign In
+      </Button>
       <Button variant="contained" href="/getstart">
         Start Now
       </Button>
@@ -14,3 +16,4 @@ const SignInStartNowButtons = () => {
 };
 
 export default SignInStartNowButtons;
+
