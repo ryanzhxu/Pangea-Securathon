@@ -14,7 +14,9 @@
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
+    "lint": "^0.8.19",
     "lottie-react": "^2.4.0",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-clock": "^4.5.0",
@@ -29,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext \"./src/**/*.{js,jsx,ts,tsx,d.ts}\"",
+    "prettier": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,d.ts,css,html}\" \"./public/**/*.{css,html}\""
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.43.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.32.2"
   }
 }

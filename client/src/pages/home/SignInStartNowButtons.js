@@ -5,8 +5,8 @@ import StSignInStartNowButtons from './signInStartNowButtons/StSignInStartNowBut
 const SignInStartNowButtons = () => {
   return (
     <StSignInStartNowButtons>
-      <Button variant='outlined'>Sign In</Button>
-      <Button variant='contained'>Start Now</Button>
+      <Button variant="outlined">Sign In</Button>
+      <Button variant="contained">Start Now</Button>
     </StSignInStartNowButtons>
   );
 };
