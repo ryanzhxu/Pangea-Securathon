@@ -51,12 +51,14 @@ const SignIn = () => {
   return (
     <SignInContainer>
       {/* Left Side with SVG Image */}
-      <Grid item xs={12} md={7}>
-        <StWelcomeImage src={welcomeImage} alt="Join Medisync!" />
+      <Grid item xs={12} md={7} flex={1}>
+        <a href="/">
+          <StWelcomeImage src={welcomeImage} alt="Join Medisync!" />
+        </a>
       </Grid>
 
       {/* Right Side with Sign-In Form */}
-      <Grid item xs={12} md={5}>
+      <Grid item xs={12} md={5} flex={1}>
         <SignInBox>
           <StyledAvatar>
             <LockOutlinedIcon />
