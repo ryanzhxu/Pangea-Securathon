@@ -18,7 +18,7 @@ app.use(require('./routes/physicians'));
 
 require('mongoose').connect(process.env.DB_HOST_REMOTE);
 
-app.listen(3001, () => {
+app.listen(3000, () => {
   console.log('Server is running...');
 });
 
