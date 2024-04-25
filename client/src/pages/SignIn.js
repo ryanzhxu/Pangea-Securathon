@@ -19,26 +19,35 @@ const SignIn = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3000/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    const response = await fetch('http://localhost:3000/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+      const data = await response.json();
 
-    const data = await response.json();
+      if (data.status === 'success') {
+        const { refresh_token, access_token, user } = data;
 
-    if (response.ok) {
-      console.log('Sign-in successful', data);
-    } else {
-      console.error('Sign-in failed', data.message);
+        // Store tokens for session management
+        localStorage.setItem('access_token', access_token.token);
+        localStorage.setItem('refresh_token', refresh_token.token);
+
+        // Redirect to a protected route or update UI to reflect sign-in success
+        window.location.href = '/'; // Redirect to dashboard or home page
+      }
+    } catch (error) {
+      console.log('invalid credentials');
     }
   };
+
   return (
     <SignInContainer>
       {/* Left Side with SVG Image */}
