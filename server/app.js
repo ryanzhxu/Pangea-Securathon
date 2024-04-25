@@ -15,8 +15,9 @@ app.use(cookieParser());
 app.use(express.static(require('path').join(__dirname, 'public')));
 app.use(require('./routes/patients'));
 app.use(require('./routes/physicians'));
-
+app.use(require('./routes/authentication'));
 require('mongoose').connect(process.env.DB_HOST_REMOTE);
+
 
 app.listen(3000, () => {
   console.log('Server is running...');
