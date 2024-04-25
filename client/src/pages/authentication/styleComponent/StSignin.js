@@ -17,6 +17,7 @@ export const SignInBox = styled(Box)`
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 150px;
 `;
 
 export const StyledAvatar = styled(Avatar)`
