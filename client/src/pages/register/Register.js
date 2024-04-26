@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button } from '@mui/material';
 // @ts-ignore
-import joinMediSync from '../startNow/images/join-medisync.svg';
+import logo from '../startNow/images/logo.svg';
+// @ts-ignore
+import dots from '../startNow/images/dots-two.png';
 import SERVER_URL from '../../config';
+import '../startNow/style/style.css';
 
 const Register = ({ isPhysician }) => {
   console.log('SERVER_URL: ', SERVER_URL);
@@ -46,9 +49,20 @@ const Register = ({ isPhysician }) => {
   };
 
   return (
-    <div className="get-start-page" style={{ display: 'flex' }}>
-      <img src={joinMediSync} alt="Join Medisync!" style={{ flex: 1 }} />
-      <div className="get-start-page-right-section" style={{ flex: 1 }}>
+    <div className="wrapper">
+      <div className="left-section">
+        <div className="left-section-content">
+          <img src={logo} className="logo" />
+          <div className="header">Better healthcare starts here</div>
+          <div className="subtext">
+            Securely transfer health data and medical records between physicians and patients.
+          </div>
+          <div className="dots-container">
+            <img src={dots} className="logo" />
+          </div>
+        </div>
+      </div>
+      <div className="right-section">
         <div style={{ textAlign: 'left', margin: '100px 120px' }}>
           <h2 style={{ marginBottom: '25px' }}>Register as a physician</h2>
           <form onSubmit={handleSubmit}>

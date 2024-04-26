@@ -1,22 +1,46 @@
 import React, { useState } from 'react';
 // @ts-ignore
-import joinMediSync from './startNow/images/join-medisync.svg';
-import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import logo from './startNow/images/logo.svg';
+// @ts-ignore
+import dots from './startNow/images/dots-one.png';
+// @ts-ignore
+import chevron from './startNow/images/chevron-right.png';
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import './startNow/style/style.css';
 
 const GetStart = () => {
   const navigate = useNavigate();
   const [selectedValue, setSelectedValue] = useState('');
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (_event, newValue) => {
+    setSelectedValue((prevSelectedValue) => (prevSelectedValue === newValue ? newValue : newValue));
   };
 
   return (
-    <div className="get-start-page" style={{ display: 'flex' }}>
-      <img src={joinMediSync} alt="Join Medisync!" style={{ flex: 1 }} />
-      <div className="get-start-page-right-section" style={{ flex: 1 }}>
-        <div className="get-start-page-login" style={{ marginTop: '45px', textAlign: 'center' }}>
+    <div className="wrapper">
+      <div className="left-section">
+        <div className="left-section-content">
+          <img src={logo} className="logo" />
+          <div className="header">Better healthcare starts here</div>
+          <div className="subtext">
+            Securely transfer health data and medical records between physicians and patients.
+          </div>
+          <div className="dots-container">
+            <img src={dots} className="logo" />
+          </div>
+        </div>
+      </div>
+      <div className="right-section">
+        <div className="get-start-page-login" style={{ marginTop: '45px', marginRight: '120px', textAlign: 'right' }}>
           Already have an account?{' '}
           <a href="/signin" style={{ textDecoration: 'none', color: '#1565D8', fontWeight: 'bold' }}>
             Sign in
@@ -29,19 +53,30 @@ const GetStart = () => {
           </h4>
           <div>
             <FormControl component="fieldset">
-              <RadioGroup aria-label="options" name="options" value={selectedValue} onChange={handleChange}>
-                <FormControlLabel value="physician" control={<Radio />} label="Physician" />
-                <FormControlLabel value="patient" control={<Radio />} label="Patient" />
-              </RadioGroup>
+              <ToggleButtonGroup value={selectedValue} onChange={handleChange} orientation="vertical" exclusive>
+                <ToggleButton value="physician" className="toggle-button">
+                  <div>Physician </div>
+                  <div className="button-subtext">
+                    A licensed practitioner looking to manage patient data and documentation.
+                  </div>
+                </ToggleButton>
+                <ToggleButton value="patient" className="toggle-button">
+                  <div>Patient</div>
+                  <div className="button-subtext">
+                    An individual looking to share their health data with their provider or physician.
+                  </div>
+                </ToggleButton>
+              </ToggleButtonGroup>
             </FormControl>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => navigate(`/register/${selectedValue}`)}
-              disabled={!selectedValue}
-            >
-              Continue
-            </Button>
+            <div className="button-container">
+              <Button
+                className="button primary"
+                onClick={() => navigate(`/register/${selectedValue}`)}
+                disabled={!selectedValue}
+              >
+                Continue <img src={chevron} className="chevron" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
