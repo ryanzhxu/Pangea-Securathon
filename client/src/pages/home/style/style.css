@@ -5,10 +5,13 @@
   border-radius: 10px !important;
 }
 
+.wrapper {
+}
+
 body {
   background-image: url('../images/home-background.svg');
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: right calc(50% + 30px);
   background-attachment: fixed;
 }
 
