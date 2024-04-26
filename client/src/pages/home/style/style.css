@@ -5,6 +5,13 @@
   border-radius: 10px !important;
 }
 
+body {
+  background-image: url('../images/home-background.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
+}
+
 .primary {
   background-color: #4880ff !important;
   color: #fff !important;

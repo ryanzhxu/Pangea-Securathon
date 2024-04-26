@@ -19,7 +19,7 @@ const Home = () => {
     <StHome>
       <Header />
       <Body />
-      <div className="home-page-bottom-section" style={{ marginRight: '120px' }}>
+      <div className="home-page-bottom-section" style={{ marginTop: '220px', marginRight: '120px' }}>
         <div>
           <h2>Medisync pairs with popular wearable health trackers</h2>
           <div style={{ display: 'inline-flex', gap: '60px', alignItems: 'center' }}>

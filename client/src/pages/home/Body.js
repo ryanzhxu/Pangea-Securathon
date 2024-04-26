@@ -10,7 +10,7 @@ import dashboard from './images/dashboard.svg';
 const Body = () => {
   return (
     <StBody>
-      <div style={{ textAlign: 'left', marginBottom: '120px' }}>
+      <div style={{ textAlign: 'left', marginTop: '120px' }}>
         <div className="hero">
           Health metrics <br />
           reimagined
@@ -25,10 +25,6 @@ const Body = () => {
           </Button>
           <Button className="button">How it works</Button>
         </div>
-      </div>
-      <div style={{ margin: 'auto', alignItems: 'center' }}>
-        <img src={ellipse} alt="" style={{ position: 'absolute', zIndex: '-1', width: '450px', height: '450px' }} />
-        <img src={dashboard} alt="" style={{ width: '600px', height: '600px' }} />
       </div>
     </StBody>
   );
