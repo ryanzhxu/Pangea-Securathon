@@ -1,6 +1,7 @@
 import React from 'react';
 import StBody from './body/StBody';
 import { Button } from '@mui/material';
+import './style/style.css';
 // @ts-ignore
 import ellipse from './images/ellipse.svg';
 // @ts-ignore
@@ -10,16 +11,19 @@ const Body = () => {
   return (
     <StBody>
       <div style={{ textAlign: 'left', marginBottom: '120px' }}>
-        <h1 style={{ fontSize: '48px' }}>Health metrics reimagined</h1>
-        <h4 style={{ color: 'grey' }}>
-          A secure data sharing platform that connects patients and physicians, giving them a clearer picture of your
-          medical history.
-        </h4>
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <Button variant="contained" href="/getstart">
+        <div className="hero">
+          Health metrics <br />
+          reimagined
+        </div>
+        <div className="hero-sub-text">
+          A secure data sharing platform that connects patients and <br />
+          physicians, giving them a clearer picture of your medical history.
+        </div>
+        <div style={{ display: 'flex', gap: '16px' }}>
+          <Button className="button primary" href="/getstart">
             Start Now
           </Button>
-          <Button variant="text">How it works</Button>
+          <Button className="button">How it works</Button>
         </div>
       </div>
       <div style={{ margin: 'auto', alignItems: 'center' }}>

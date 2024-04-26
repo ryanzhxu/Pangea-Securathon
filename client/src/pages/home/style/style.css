@@ -1,0 +1,48 @@
+.button {
+  text-transform: none !important;
+  font-size: 11pt !important;
+  padding: 8px 26px 8px 26px !important;
+  border-radius: 10px !important;
+}
+
+.primary {
+  background-color: #4880ff !important;
+  color: #fff !important;
+  &:hover {
+    background-color: #6091ff !important;
+  }
+}
+
+.secondary {
+  background-color: #e5edff !important;
+  color: #4880ff !important;
+  &:hover {
+    background-color: #eaf0ff !important;
+  }
+}
+
+.outlined {
+  border: 1px solid #4880ff !important;
+}
+
+.navbar-link {
+  color: #111827 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 14pt !important;
+  &:hover {
+    color: #3a4660 !important;
+  }
+}
+
+.hero {
+  font-size: 42pt;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-sub-text {
+  color: #777e89;
+  font-size: 14pt;
+  margin-bottom: 20px;
+}
