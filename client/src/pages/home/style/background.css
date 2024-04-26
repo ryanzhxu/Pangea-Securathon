@@ -1,0 +1,6 @@
+#home {
+  background-image: url('../images/home-background.svg');
+  background-repeat: no-repeat;
+  background-position: right calc(50% + 30px);
+  background-attachment: fixed;
+}
