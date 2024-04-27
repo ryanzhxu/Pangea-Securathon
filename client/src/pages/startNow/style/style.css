@@ -24,6 +24,12 @@
   flex: 1;
 }
 
+.right-section-content {
+  padding-left: 15%;
+  padding-top: 20%;
+  padding-right: 15%;
+}
+
 .header {
   margin-top: 12px;
   color: #111827;
@@ -124,4 +130,18 @@
   font-size: 10.5pt;
   margin-bottom: -6px;
   margin-left: 3px;
+}
+
+.patient-subtext {
+  color: #777e89;
+}
+
+.qr-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.store-wrapper {
+  text-align: center;
+  margin-top: 20px;
 }
