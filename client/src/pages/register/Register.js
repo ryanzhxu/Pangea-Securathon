@@ -12,9 +12,11 @@ const Register = ({ isPhysician }) => {
   // console.log('SERVER_URL: ', SERVER_URL);
 
   const [formData, setFormData] = useState({
-    name: '',
+    firstname: '',
+    lastname: '',
     email: '',
     phone: '',
+    password: '',
   });
 
   const handleInputChange = (e) => {
@@ -30,7 +32,7 @@ const Register = ({ isPhysician }) => {
     console.log(formData);
 
     try {
-      const response = await fetch(`${SERVER_URL}/physicians`, {
+      const response = await fetch(`http://localhost:3000/physicians`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,9 +40,15 @@ const Register = ({ isPhysician }) => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Physician added:', data);
+      const data = await response.json();
+      if (data.status === 'success') {
+        const { refresh_token, access_token } = data;
+
+        // Store tokens for session management
+        localStorage.setItem('access_token', access_token.token);
+        localStorage.setItem('refresh_token', refresh_token.token);
+        // Redirect to a protected route or update UI to reflect sign-in success
+        window.location.href = '/'; // Redirect to dashboard or home page
       } else {
         console.error('Failed to add physician:', response.statusText);
       }
@@ -69,11 +77,28 @@ const Register = ({ isPhysician }) => {
           <form onSubmit={handleSubmit}>
             <FormGroup>
               <FormControl sx={{ marginBottom: '12px' }}>
-                <div className="label">Full Name</div>
+                <div className="label">First Name</div>
                 <TextField
                   required
-                  id="name"
-                  placeholder="Enter your full name"
+                  id="firstname"
+                  placeholder="Enter your first name"
+                  onChange={handleInputChange}
+                  className="text-input"
+                  InputLabelProps={{ shrink: false }}
+                  sx={{
+                    '& fieldset': { border: 'none' },
+                    input: { color: '#ABAFB1', fontSize: '11pt' },
+                  }}
+                  margin="normal"
+                />
+              </FormControl>
+
+              <FormControl sx={{ marginBottom: '12px' }}>
+                <div className="label">Last Name</div>
+                <TextField
+                  required
+                  id="lastname"
+                  placeholder="Enter your last name"
                   onChange={handleInputChange}
                   className="text-input"
                   InputLabelProps={{ shrink: false }}
@@ -91,6 +116,7 @@ const Register = ({ isPhysician }) => {
                   required
                   id="email"
                   placeholder="Enter your work email"
+                  autoComplete="off"
                   onChange={handleInputChange}
                   className="text-input"
                   InputLabelProps={{ shrink: false }}
@@ -110,6 +136,25 @@ const Register = ({ isPhysician }) => {
                   placeholder="Enter your phone number"
                   onChange={handleInputChange}
                   className="text-input"
+                  InputLabelProps={{ shrink: false }}
+                  sx={{
+                    '& fieldset': { border: 'none' },
+                    input: { color: '#ABAFB1', fontSize: '11pt' },
+                  }}
+                  margin="normal"
+                />
+              </FormControl>
+
+              <FormControl sx={{ marginBottom: '12px' }}>
+                <div className="label">Password</div>
+                <TextField
+                  required
+                  id="password"
+                  placeholder="Set your password"
+                  onChange={handleInputChange}
+                  className="text-input"
+                  type="password"
+                  autoComplete="off"
                   InputLabelProps={{ shrink: false }}
                   sx={{
                     '& fieldset': { border: 'none' },
