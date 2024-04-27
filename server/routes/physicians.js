@@ -4,6 +4,7 @@ var { StatusCodes } = require('http-status-codes');
 const { default: mongoose } = require('mongoose');
 const Physician = require('../models/physician');
 const Patient = require('../models/patient');
+const authFlow = require('./helper/authflowSwitcher');
 
 app.get('/physicians', async (req, resp) => {
   const physicians = await Physician.find({});
@@ -34,18 +35,30 @@ app.get('/physicians/:_physicianId/patients', async (req, resp) => {
 });
 
 app.post('/physicians', async (req, resp) => {
-  if (!req.body.name) {
-    resp.status(StatusCodes.BAD_REQUEST).send({ message: 'Physician must have a name.' });
+  if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.password) {
+    resp.status(StatusCodes.BAD_REQUEST).send({ message: 'Please provide all required fields' });
     return;
   }
-
-  const newPhysician = new Physician(req.body);
-
-  try {
-    await newPhysician.save();
-    resp.status(StatusCodes.CREATED).send(newPhysician);
-  } catch (e) {
-    resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+  console.log('starting');
+  const result = await authFlow('SIGN_UP', req.body);
+  if (result.status == 'success') {
+    try {
+      const newPhysician = new Physician({
+        pangeaId: result.user.id, // Manually provided unique ID
+        name: result.user.first_name + ' ' + result.user.last_name,
+        email: result.user.email,
+        phone: req.body.phone,
+        patientIds: [],
+      });
+      await newPhysician.save();
+      resp.status(StatusCodes.CREATED).send(result);
+    } catch (e) {
+      resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+    }
+  } else {
+    resp.json({
+      status: 'unknow error',
+    });
   }
 });
 
