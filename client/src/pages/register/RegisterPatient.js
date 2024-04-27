@@ -9,7 +9,10 @@ import qrcode from '../startNow/images/qr-code.png';
 import googleplay from '../startNow/images/googleplay.png';
 // @ts-ignore
 import appstore from '../startNow/images/appstore.png';
+// @ts-ignore
+import chevron from '../startNow/images/grey-chevron.png';
 import '../startNow/style/style.css';
+import { Link } from 'react-router-dom';
 
 const RegisterPatient = () => {
   return (
@@ -38,12 +41,17 @@ const RegisterPatient = () => {
           </div>
           <div className="store-wrapper">
             <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_CA&gl=US" target="new">
-              <img src={googleplay} alt="QRCode" width="180" />
+              <img src={googleplay} alt="Google Play" width="150" />
             </a>
             <br />
             <a href="https://apps.apple.com/us/app/expo-go/id982107779" target="new">
-              <img src={appstore} alt="QRCode" width="180" style={{ marginTop: '5px' }} />
+              <img src={appstore} alt="App Store" width="150" style={{ marginTop: '5px' }} />
             </a>
+          </div>
+          <div className="home-link">
+            <Link to="/" style={{ textDecoration: 'none', color: '#777e89' }}>
+              Return to the home page <img src={chevron} alt="chevron" style={{ position: 'relative', top: '1px' }} />
+            </Link>
           </div>
         </div>
       </div>
