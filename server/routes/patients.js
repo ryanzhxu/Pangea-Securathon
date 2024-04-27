@@ -1,9 +1,11 @@
-const Patient = require("../models/patient");
-var express = require("express");
+var express = require('express');
 var app = express();
-var { StatusCodes } = require("http-status-codes");
+var { StatusCodes } = require('http-status-codes');
+const { default: mongoose } = require('mongoose');
+const Patient = require('../models/patient');
+const PatientHealthData = require('../models/patientHealthData');
 
-app.get("/patients", async (req, resp) => {
+app.get('/patients', async (req, resp) => {
   try {
     resp.status(StatusCodes.OK).send(await Patient.find({}));
   } catch (e) {
@@ -11,7 +13,7 @@ app.get("/patients", async (req, resp) => {
   }
 });
 
-app.get("/patients/:_patientId", async (req, resp) => {
+app.get('/patients/:_patientId', async (req, resp) => {
   try {
     const foundPatient = await Patient.findById(req.params._patientId);
 
@@ -25,11 +27,31 @@ app.get("/patients/:_patientId", async (req, resp) => {
   }
 });
 
-app.post("/patients", async (req, resp) => {
+app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
+  const patientId = req.params._patientId;
+
+  if (!mongoose.isValidObjectId(patientId)) {
+    return resp.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid patientId format.' });
+  }
+
+  try {
+    const healthData = await PatientHealthData.find({ patientId });
+
+    if (healthData.length === 0) {
+      return resp
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: `No health data found for patient with ID ${patientId}.` });
+    }
+
+    return resp.status(StatusCodes.OK).json(healthData);
+  } catch (e) {
+    return resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+  }
+});
+
+app.post('/patients', async (req, resp) => {
   if (!req.body.name) {
-    resp
-      .status(StatusCodes.BAD_REQUEST)
-      .send({ message: "Patient must have a name." });
+    resp.status(StatusCodes.BAD_REQUEST).send({ message: 'Patient must have a name.' });
     return;
   }
 
