@@ -59,7 +59,7 @@ const Register = ({ isPhysician }) => {
             Securely transfer health data and medical records between physicians and patients.
           </div>
           <div className="dots-container">
-            <img src={dots} className="logo" alt="dots" />
+            <img src={dots} className="logo" alt="logo" />
           </div>
         </div>
       </div>
@@ -136,3 +136,4 @@ Register.propTypes = {
 };
 
 export default Register;
+

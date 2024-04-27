@@ -26,7 +26,8 @@ const SignIn = () => {
       const data = await response.json();
 
       if (data.status === 'success') {
-        const { refresh_token, access_token, user } = data;
+        //TODO: extract user from data for consume
+        const { refresh_token, access_token } = data;
 
         // Store tokens for session management
         localStorage.setItem('access_token', access_token.token);
@@ -108,3 +109,4 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
