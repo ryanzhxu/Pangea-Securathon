@@ -5,15 +5,7 @@ import logo from './startNow/images/logo.svg';
 import dots from './startNow/images/dots-one.png';
 // @ts-ignore
 import chevron from './startNow/images/chevron-right.png';
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  ToggleButton,
-  ToggleButtonGroup,
-} from '@mui/material';
+import { Button, FormControl, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './startNow/style/style.css';
 
@@ -46,7 +38,7 @@ const GetStart = () => {
             Sign in
           </a>
         </div>
-        <div style={{ textAlign: 'left', margin: '100px 120px' }}>
+        <div style={{ textAlign: 'left', margin: '160px 120px' }}>
           <h2>Get started now</h2>
           <h4 style={{ color: 'grey', fontWeight: 'normal' }}>
             To begin, tell us what type of account you're registering.

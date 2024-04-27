@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button, TextField } from '@mui/material';
+import { FormControl, FormGroup, Button, TextField } from '@mui/material';
 // @ts-ignore
 import logo from '../startNow/images/logo.svg';
 // @ts-ignore
@@ -64,7 +64,7 @@ const Register = ({ isPhysician }) => {
         </div>
       </div>
       <div className="right-section">
-        <div style={{ textAlign: 'left', margin: '100px 120px' }}>
+        <div style={{ textAlign: 'left', margin: '160px 120px' }}>
           <h2 style={{ marginBottom: '25px', color: '#111827' }}>Register as a physician</h2>
           <form onSubmit={handleSubmit}>
             <FormGroup>
