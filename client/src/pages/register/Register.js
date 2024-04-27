@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button } from '@mui/material';
+import { FormControl, InputLabel, Input, FormHelperText, FormGroup, Button, TextField } from '@mui/material';
 // @ts-ignore
 import logo from '../startNow/images/logo.svg';
 // @ts-ignore
@@ -9,7 +9,7 @@ import SERVER_URL from '../../config';
 import '../startNow/style/style.css';
 
 const Register = ({ isPhysician }) => {
-  console.log('SERVER_URL: ', SERVER_URL);
+  // console.log('SERVER_URL: ', SERVER_URL);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -27,6 +27,7 @@ const Register = ({ isPhysician }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
 
     try {
       const response = await fetch(`${SERVER_URL}/physicians`, {
@@ -64,29 +65,62 @@ const Register = ({ isPhysician }) => {
       </div>
       <div className="right-section">
         <div style={{ textAlign: 'left', margin: '100px 120px' }}>
-          <h2 style={{ marginBottom: '25px' }}>Register as a physician</h2>
+          <h2 style={{ marginBottom: '25px', color: '#111827' }}>Register as a physician</h2>
           <form onSubmit={handleSubmit}>
-            <FormGroup style={{ gap: '25px' }}>
-              <FormControl>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input id="name" aria-describedby="name-helper-text" onChange={handleInputChange} />
-                <FormHelperText id="name-helper-text">Enter your name</FormHelperText>
+            <FormGroup>
+              <FormControl sx={{ marginBottom: '12px' }}>
+                <div className="label">Full Name</div>
+                <TextField
+                  required
+                  id="name"
+                  placeholder="Enter your full name"
+                  onChange={handleInputChange}
+                  className="text-input"
+                  InputLabelProps={{ shrink: false }}
+                  sx={{
+                    '& fieldset': { border: 'none' },
+                    input: { color: '#ABAFB1', fontSize: '11pt' },
+                  }}
+                  margin="normal"
+                />
+              </FormControl>
+
+              <FormControl sx={{ marginBottom: '12px' }}>
+                <div className="label">Email Address</div>
+                <TextField
+                  required
+                  id="email"
+                  placeholder="Enter your work email"
+                  onChange={handleInputChange}
+                  className="text-input"
+                  InputLabelProps={{ shrink: false }}
+                  sx={{
+                    '& fieldset': { border: 'none' },
+                    input: { color: '#ABAFB1', fontSize: '11pt' },
+                  }}
+                  margin="normal"
+                />
               </FormControl>
 
               <FormControl>
-                <InputLabel htmlFor="email">Email address</InputLabel>
-                <Input id="email" aria-describedby="email-helper-text" onChange={handleInputChange} />
-                <FormHelperText id="email-helper-text">Enter your work email</FormHelperText>
-              </FormControl>
-
-              <FormControl>
-                <InputLabel htmlFor="phone">Phone number</InputLabel>
-                <Input id="phone" aria-describedby="phone-helper-text" onChange={handleInputChange} />
-                <FormHelperText id="phone-helper-text">Enter your phone number</FormHelperText>
+                <div className="label">Phone Number</div>
+                <TextField
+                  required
+                  id="phone"
+                  placeholder="Enter your phone number"
+                  onChange={handleInputChange}
+                  className="text-input"
+                  InputLabelProps={{ shrink: false }}
+                  sx={{
+                    '& fieldset': { border: 'none' },
+                    input: { color: '#ABAFB1', fontSize: '11pt' },
+                  }}
+                  margin="normal"
+                />
               </FormControl>
             </FormGroup>
             <div style={{ textAlign: 'right', marginTop: '25px' }}>
-              <Button variant="contained" color="primary" type="submit">
+              <Button className="button primary" type="submit">
                 Sign Up
               </Button>
             </div>

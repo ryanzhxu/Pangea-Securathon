@@ -105,3 +105,23 @@
 .chevron {
   margin-left: 8px;
 }
+
+.text-input {
+  background-color: #f6f6fb;
+  border-radius: 12px !important;
+}
+
+.MuiInputBase-root {
+  border-radius: 12px !important;
+}
+
+.MuiOutlinedInput-root {
+  border-color: #f6f6fb !important;
+}
+
+.label {
+  color: #777e89;
+  font-size: 10.5pt;
+  margin-bottom: -3px;
+  margin-left: 3px;
+}
