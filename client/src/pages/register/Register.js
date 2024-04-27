@@ -53,18 +53,18 @@ const Register = ({ isPhysician }) => {
     <div className="wrapper">
       <div className="left-section">
         <div className="left-section-content">
-          <img src={logo} className="logo" />
+          <img src={logo} className="logo" alt="logo" />
           <div className="header">Better healthcare starts here</div>
           <div className="subtext">
             Securely transfer health data and medical records between physicians and patients.
           </div>
           <div className="dots-container">
-            <img src={dots} className="logo" />
+            <img src={dots} className="logo" alt="dots" />
           </div>
         </div>
       </div>
       <div className="right-section">
-        <div style={{ textAlign: 'left', margin: '160px 120px' }}>
+        <div style={{ textAlign: 'left', marginTop: '160px', marginLeft: '10%', marginRight: '12%' }}>
           <h2 style={{ marginBottom: '25px', color: '#111827' }}>Register as a physician</h2>
           <form onSubmit={handleSubmit}>
             <FormGroup>

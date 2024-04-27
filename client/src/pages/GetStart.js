@@ -21,18 +21,18 @@ const GetStart = () => {
     <div className="wrapper">
       <div className="left-section">
         <div className="left-section-content">
-          <img src={logo} className="logo" />
+          <img src={logo} className="logo" alt="logo" />
           <div className="header">Better healthcare starts here</div>
           <div className="subtext">
             Securely transfer health data and medical records between physicians and patients.
           </div>
           <div className="dots-container">
-            <img src={dots} className="logo" />
+            <img src={dots} className="logo" alt="dots" />
           </div>
         </div>
       </div>
       <div className="right-section">
-        <div className="get-start-page-login" style={{ marginTop: '45px', marginRight: '120px', textAlign: 'right' }}>
+        <div className="get-start-page-login" style={{ marginTop: 45, marginRight: 120, textAlign: 'right' }}>
           Already have an account?{' '}
           <a href="/signin" style={{ textDecoration: 'none', color: '#1565D8', fontWeight: 'bold' }}>
             Sign in
@@ -66,7 +66,7 @@ const GetStart = () => {
                 onClick={() => navigate(`/register/${selectedValue}`)}
                 disabled={!selectedValue}
               >
-                Continue <img src={chevron} className="chevron" />
+                Continue <img src={chevron} className="chevron" alt="chevron" />
               </Button>
             </div>
           </div>
