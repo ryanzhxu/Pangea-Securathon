@@ -21,13 +21,13 @@ const GetStart = () => {
     <div className="wrapper">
       <div className="left-section">
         <div className="left-section-content">
-          <img src={logo} className="logo" />
+          <img src={logo} className="logo" alt="logo" />
           <div className="header">Better healthcare starts here</div>
           <div className="subtext">
             Securely transfer health data and medical records between physicians and patients.
           </div>
           <div className="dots-container">
-            <img src={dots} className="logo" />
+            <img src={dots} className="logo" alt="dots" />
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ const GetStart = () => {
                 onClick={() => navigate(`/register/${selectedValue}`)}
                 disabled={!selectedValue}
               >
-                Continue <img src={chevron} className="chevron" />
+                Continue <img src={chevron} className="chevron" alt="chevron" />
               </Button>
             </div>
           </div>
@@ -77,3 +77,4 @@ const GetStart = () => {
 };
 
 export default GetStart;
+

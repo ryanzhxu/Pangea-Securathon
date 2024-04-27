@@ -53,13 +53,13 @@ const Register = ({ isPhysician }) => {
     <div className="wrapper">
       <div className="left-section">
         <div className="left-section-content">
-          <img src={logo} className="logo" />
+          <img src={logo} className="logo" alt="logo" />
           <div className="header">Better healthcare starts here</div>
           <div className="subtext">
             Securely transfer health data and medical records between physicians and patients.
           </div>
           <div className="dots-container">
-            <img src={dots} className="logo" />
+            <img src={dots} className="logo" alt="logo" />
           </div>
         </div>
       </div>
@@ -136,3 +136,4 @@ Register.propTypes = {
 };
 
 export default Register;
+
