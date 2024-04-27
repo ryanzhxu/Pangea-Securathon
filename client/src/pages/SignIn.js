@@ -1,17 +1,9 @@
-// src/components/SignInWithImage.js
 import React, { useState } from 'react';
-import { Grid, TextField } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import {
-  SignInContainer,
-  SignInBox,
-  StyledAvatar,
-  StyledButton,
-  StyledTypography,
-} from './authentication/styleComponent/StSignin';
-import { StWelcomeImage } from './authentication/styleComponent/StWelcomeImage';
+import { Button, Container, Divider, TextField } from '@mui/material';
+import './home/style/style.css';
 // @ts-ignore
-import welcomeImage from './authentication/images/welcome.svg';
+import logo from './authentication/images/medisync-logo.svg';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -49,47 +41,69 @@ const SignIn = () => {
   };
 
   return (
-    <SignInContainer>
-      {/* Left Side with SVG Image */}
-      <Grid item xs={12} md={7} flex={1}>
-        <a href="/">
-          <StWelcomeImage src={welcomeImage} alt="Join Medisync!" />
-        </a>
-      </Grid>
-
-      {/* Right Side with Sign-In Form */}
-      <Grid item xs={12} md={5} flex={1}>
-        <SignInBox>
-          <StyledAvatar>
-            <LockOutlinedIcon />
-          </StyledAvatar>
-          <StyledTypography variant="h5">Sign In</StyledTypography>
-          <form onSubmit={handleSignIn}>
-            <TextField
-              fullWidth
-              label="Email Address"
-              name="email"
-              type="email"
-              value={email}
-              required
-              autoFocus
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              fullWidth
-              label="Password"
-              type="password"
-              value={password}
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <StyledButton fullWidth variant="contained" color="primary" type="submit">
+    <div className="outer-wrapper">
+      <Container maxWidth="xl">
+        <div style={{ textAlign: 'left', paddingTop: '12px' }}>
+          <Link to="/">
+            <img src={logo} alt="logo" width="160" />
+          </Link>
+        </div>
+        <div className="signin-container">
+          <div className="signin-header">Welcome back to Medisync!</div>
+          <div className="signin-subtext">Sign in below</div>
+          <Divider variant="middle" />
+          <form onSubmit={handleSignIn} style={{ marginTop: '20px' }}>
+            <div className="form-field-container">
+              <div className="label">Email Address</div>
+              <TextField
+                required
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                className="text-input"
+                InputLabelProps={{ shrink: false }}
+                sx={{
+                  '& fieldset': { border: 'none' },
+                  input: { color: '#ABAFB1', fontSize: '11pt' },
+                }}
+                margin="normal"
+              />
+            </div>
+            <div className="form-field-container" style={{ marginTop: '12px' }}>
+              <div className="label">Password</div>
+              <TextField
+                required
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
+                className="text-input"
+                InputLabelProps={{ shrink: false }}
+                sx={{
+                  '& fieldset': { border: 'none' },
+                  input: { color: '#ABAFB1', fontSize: '11pt' },
+                }}
+                margin="normal"
+              />
+            </div>
+            <Button type="submit" className="signin-button">
               Sign In
-            </StyledButton>
+            </Button>
           </form>
-        </SignInBox>
-      </Grid>
-    </SignInContainer>
+          <div className="footer-text">
+            Don't have an account?{' '}
+            <Link to="/getstart" style={{ color: '#1565D8', fontWeight: 500, textDecoration: 'none' }}>
+              Register here
+            </Link>
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 };
 
