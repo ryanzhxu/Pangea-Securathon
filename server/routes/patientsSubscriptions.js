@@ -6,15 +6,17 @@ const Physician = require('../models/physician');
 const Patient = require('../models/patient');
 const PatientsSubscriptions = require('../models/patientsSubscriptions');
 
+// GET all patients' subscriptions data
 app.get('/patientsSubscriptions', async (req, resp) => {
   try {
     const subscriptions = await PatientsSubscriptions.find({});
-    resp.status(StatusCodes.OK).json(subscriptions); // Send JSON response directly
+    resp.status(StatusCodes.OK).json(subscriptions);
   } catch (e) {
-    resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e.message); // Send only error message
+    resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e.message);
   }
 });
 
+// GET a patient's subscription data by patientSubscriptionId
 app.get('/patientsSubscriptions/:_patientSubscriptionId', async (req, resp) => {
   try {
     const foundRecord = await PatientsSubscriptions.findById(req.params._patientSubscriptionId);
@@ -31,6 +33,7 @@ app.get('/patientsSubscriptions/:_patientSubscriptionId', async (req, resp) => {
   }
 });
 
+// Add a patient subscription
 app.post('/patientsSubscriptions', async (req, resp) => {
   if (await isSubscriptionRequestValid(req, resp)) {
     return;
@@ -46,6 +49,7 @@ app.post('/patientsSubscriptions', async (req, resp) => {
   }
 });
 
+// This helper method checks whether a patient's subscription can be added
 const isSubscriptionRequestValid = async (req, resp) => {
   const { patientId, physicianId, isScheduledUploads, uploadFrequency } = req.body;
 

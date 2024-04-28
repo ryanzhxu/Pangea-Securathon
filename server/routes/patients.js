@@ -4,7 +4,9 @@ var { StatusCodes } = require('http-status-codes');
 const { default: mongoose } = require('mongoose');
 const Patient = require('../models/patient');
 const PatientHealthData = require('../models/patientHealthData');
+const PatientsSubscriptions = require('../models/patientsSubscriptions');
 
+// GET all patients
 app.get('/patients', async (req, resp) => {
   try {
     resp.status(StatusCodes.OK).send(await Patient.find({}));
@@ -13,6 +15,7 @@ app.get('/patients', async (req, resp) => {
   }
 });
 
+// GET a patient by its ID
 app.get('/patients/:_patientId', async (req, resp) => {
   try {
     const foundPatient = await Patient.findById(req.params._patientId);
@@ -27,6 +30,7 @@ app.get('/patients/:_patientId', async (req, resp) => {
   }
 });
 
+// GET all health data being sent by a patient by its ID
 app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
   const patientId = req.params._patientId;
 
@@ -49,6 +53,26 @@ app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
   }
 });
 
+// GET the subscription detail of a patient by its ID
+app.get('/patients/:_patientId/patientsSubscriptions', async (req, resp) => {
+  const patientId = req.params._patientId;
+
+  if (!mongoose.isValidObjectId(patientId)) {
+    return resp.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid patientId format.' });
+  }
+
+  try {
+    if (!(await Patient.findById(patientId))) {
+      return resp.status(StatusCodes.BAD_REQUEST).json({ error: `Patient with ID ${patientId} does not exist.` });
+    }
+
+    return resp.status(StatusCodes.OK).json(await PatientsSubscriptions.find({ patientId }));
+  } catch (e) {
+    return resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+  }
+});
+
+// Add a patient
 app.post('/patients', async (req, resp) => {
   if (!req.body.name) {
     resp.status(StatusCodes.BAD_REQUEST).send({ message: 'Patient must have a name.' });

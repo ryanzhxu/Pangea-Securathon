@@ -4,6 +4,7 @@ var { StatusCodes } = require('http-status-codes');
 const { default: mongoose } = require('mongoose');
 const PatientHealthData = require('../models/patientHealthData');
 
+// GET all patients' health data
 app.get('/patientHealthData', async (req, resp) => {
   try {
     resp.status(StatusCodes.OK).send(await PatientHealthData.find({}));
@@ -12,6 +13,7 @@ app.get('/patientHealthData', async (req, resp) => {
   }
 });
 
+// GET a patient's health data by patientHealthDataId
 app.get('/patientHealthData/:_patientHealthDataId', async (req, resp) => {
   try {
     const foundRecord = await PatientHealthData.findById(req.params._patientHealthDataId);
@@ -28,6 +30,7 @@ app.get('/patientHealthData/:_patientHealthDataId', async (req, resp) => {
   }
 });
 
+// Add a patient's health data to db
 app.post('/patientHealthData', async (req, resp) => {
   const patientId = req.body.patientId;
   const physicianId = req.body.physicianId;

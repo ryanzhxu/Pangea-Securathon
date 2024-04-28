@@ -4,8 +4,10 @@ var { StatusCodes } = require('http-status-codes');
 const { default: mongoose } = require('mongoose');
 const Physician = require('../models/physician');
 const Patient = require('../models/patient');
+const PatientsSubscriptions = require('../models/patientsSubscriptions');
 const authFlow = require('./helper/authflowSwitcher');
 
+// GET all physicians
 app.get('/physicians', async (req, resp) => {
   const physicians = await Physician.find({});
 
@@ -16,6 +18,24 @@ app.get('/physicians', async (req, resp) => {
   }
 });
 
+// GET a physician by its ID
+app.get('/physicians/:_physicianId', async (req, resp) => {
+  try {
+    const foundPhysician = await Physician.findById(req.params._physicianId);
+
+    if (foundPhysician) {
+      resp.status(StatusCodes.OK).json(foundPhysician);
+    } else {
+      resp
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: `Physician with id ${req.params._physicianId} does not exist` });
+    }
+  } catch (e) {
+    resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+  }
+});
+
+// GET all patients associated with a physician by their ID
 app.get('/physicians/:_physicianId/patients', async (req, resp) => {
   const physicianId = req.params._physicianId;
 
@@ -34,6 +54,26 @@ app.get('/physicians/:_physicianId/patients', async (req, resp) => {
   }
 });
 
+// GET all patient's subscriptions with a physician by their ID
+app.get('/physicians/:_physicianId/patientsSubscriptions', async (req, resp) => {
+  const physicianId = req.params._physicianId;
+
+  if (!mongoose.isValidObjectId(physicianId)) {
+    return resp.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid physicianId format.' });
+  }
+
+  try {
+    if (!(await Physician.findById(physicianId))) {
+      return resp.status(StatusCodes.BAD_REQUEST).json({ error: `Physician with ID ${physicianId} does not exist.` });
+    }
+
+    return resp.status(StatusCodes.OK).json(await PatientsSubscriptions.find({ physicianId }));
+  } catch (e) {
+    return resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
+  }
+});
+
+// Add a physician
 app.post('/physicians', async (req, resp) => {
   if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.password) {
     resp.status(StatusCodes.BAD_REQUEST).send({ message: 'Please provide all required fields' });
