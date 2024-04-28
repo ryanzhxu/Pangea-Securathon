@@ -35,9 +35,14 @@ app.get('/patients/:_patientId', async (req, resp) => {
         const patientData = foundPatient.toObject();
 
         resp.status(StatusCodes.OK).json({
-          ...foundPatient.toObject(),
+          ...patientData,
           ...foundPatientSubscription.toObject(),
-          ...{ age: Math.abs(new Date(new Date().getTime() - new Date(patientData.birthdate).getTime()).getUTCFullYear() - 1970).toString() },
+          ...{
+            age: Math.abs(
+              new Date(new Date().getTime() - new Date(patientData.birthdate).getTime()).getUTCFullYear() - 1970
+            ).toString(),
+            lastUpload: 'TODO',
+          },
         });
       }
     } else {
@@ -48,10 +53,10 @@ app.get('/patients/:_patientId', async (req, resp) => {
   }
 });
 
-
 // GET all health data being sent by a patient by its ID
 app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
   const patientId = req.params._patientId;
+  const getLastUpload = req.query.getLastUpload === 'true';
 
   if (!mongoose.isValidObjectId(patientId)) {
     return resp.status(StatusCodes.BAD_REQUEST).json({ error: 'Invalid patientId format.' });
@@ -61,9 +66,15 @@ app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
     const healthData = await PatientHealthData.find({ patientId });
 
     if (healthData.length === 0) {
-      return resp
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ error: `No health data found for patient with ID ${patientId}.` });
+      return resp.status(StatusCodes.OK).json({ error: `No health data found for patient with ID ${patientId}.` });
+    }
+
+    if (getLastUpload) {
+      return resp.status(StatusCodes.OK).json(
+        healthData.reduce((latest, current) => {
+          return new Date(latest.time) > new Date(current.time) ? latest : current;
+        }).time
+      );
     }
 
     return resp.status(StatusCodes.OK).json(healthData);

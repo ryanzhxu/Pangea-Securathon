@@ -5,6 +5,8 @@ const DEV_SERVER_URL = `https://dev-medisync-server.onrender.com`;
 // const LOCAL_SERVER_URL = `http://${SERVER_ADDRESS}:${SERVER_PORT}`;
 
 // const SERVER_URL = process.env.NODE_ENV === 'dev' ? DEV_SERVER_URL : LOCAL_SERVER_URL;
-const SERVER_URL = DEV_SERVER_URL;
+// const SERVER_URL = DEV_SERVER_URL;
+
+const SERVER_URL = `http://172.25.0.1:3001`;
 
 export default SERVER_URL;

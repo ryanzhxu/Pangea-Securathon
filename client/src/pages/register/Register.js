@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Button, TextField } from '@mui/material';
 import logo from '../startNow/images/logo.svg';
 // @ts-ignore
 import dots from '../startNow/images/dots-two.png';
-import SERVER_URL from '../../config';
+// import SERVER_URL from '../../config';
 import '../startNow/style/style.css';
 
 const Register = ({ isPhysician }) => {

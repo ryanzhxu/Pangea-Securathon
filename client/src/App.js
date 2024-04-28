@@ -6,6 +6,7 @@ import GetStart from './pages/GetStart';
 import SignIn from './pages/SignIn';
 import Register from './pages/register/Register';
 import RegisterPatient from './pages/register/RegisterPatient';
+import PatientOverviewPage from './pages/dashboard/PatientOverviewPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/register/physician" element={<Register isPhysician />} />
         <Route path="/register/patient" element={<RegisterPatient />} />
+        <Route path="/patients" element={<PatientOverviewPage />} />
       </Routes>
     </div>
   );

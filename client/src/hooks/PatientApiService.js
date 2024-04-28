@@ -16,6 +16,14 @@ const getPatientsByPhysicianId = async (physicianId) => {
   return resp.json();
 };
 
+const getPatientOverviewInfo = async (patientId) => {
+  const resp = await fetch(`${SERVER_BASE_URL}/patients/${patientId}?isOverviewPage=true`, {
+    method: 'GET',
+  });
+
+  return resp.json();
+};
+
 const addPatient = async (patient) => {
   try {
     const formData = new FormData();
@@ -43,6 +51,7 @@ const addPatient = async (patient) => {
 const PatientApiService = {
   getPatients,
   getPatientsByPhysicianId,
+  getPatientOverviewInfo,
   addPatient,
 };
 
