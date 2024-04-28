@@ -17,6 +17,7 @@ app.use(require('./routes/patients'));
 app.use(require('./routes/physicians'));
 app.use(require('./routes/authentication'));
 app.use(require('./routes/patientHealthData'));
+app.use(require('./routes/patientsSubscriptions'));
 require('mongoose').connect(process.env.DB_HOST_REMOTE);
 
 app.listen(3000, () => {
