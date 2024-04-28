@@ -28,7 +28,7 @@ module.exports = mongoose.model(
         required: false,
         default: ['heartRate', 'bloodPressure', 'bloodGlucose', 'SpO2', ''],
       },
-      healthConditons: {
+      healthConditions: {
         type: String,
         default: '',
       },

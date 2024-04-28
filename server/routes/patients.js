@@ -16,12 +16,30 @@ app.get('/patients', async (req, resp) => {
 });
 
 // GET a patient by its ID
+// GET /patients/123?isOverviewPage=true - returns patient data as long with their subscription detail for consume in overview page
 app.get('/patients/:_patientId', async (req, resp) => {
+  const patientId = req.params._patientId;
+  const isOverviewPage = req.query.isOverviewPage === 'true';
+
   try {
-    const foundPatient = await Patient.findById(req.params._patientId);
+    const foundPatient = await Patient.findById(patientId);
 
     if (foundPatient) {
-      resp.status(StatusCodes.OK).json(foundPatient);
+      if (!isOverviewPage) {
+        resp.status(StatusCodes.OK).json(foundPatient);
+      }
+
+      const foundPatientSubscription = await PatientsSubscriptions.findOne({ patientId });
+
+      if (foundPatientSubscription) {
+        const patientData = foundPatient.toObject();
+
+        resp.status(StatusCodes.OK).json({
+          ...foundPatient.toObject(),
+          ...foundPatientSubscription.toObject(),
+          ...{ age: Math.abs(new Date(new Date().getTime() - new Date(patientData.birthdate).getTime()).getUTCFullYear() - 1970).toString() },
+        });
+      }
     } else {
       resp.status(StatusCodes.BAD_REQUEST).json({ error: `Patient with id ${req.params._patientId} does not exist` });
     }
@@ -29,6 +47,7 @@ app.get('/patients/:_patientId', async (req, resp) => {
     resp.status(StatusCodes.INTERNAL_SERVER_ERROR).send(e);
   }
 });
+
 
 // GET all health data being sent by a patient by its ID
 app.get('/patients/:_patientId/patientHealthData', async (req, resp) => {
